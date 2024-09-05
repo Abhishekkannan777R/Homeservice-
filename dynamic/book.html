@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Form</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .booking-form {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .btn-book {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn-book:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function sendMessage(event) {
+            // event.preventDefault(); // Prevent form submission (page reload)
+
+            // Display the success alert
+            alert("Booking successfull.We will contact you soon.");
+        }
+    </script>
+    
+    <div class="container">
+        <div class="booking-form">
+            <h2 class="text-center">Booking Form</h2>
+            <form  onsubmit="return sendMessage(event)" action="" method="POST">
+                {% csrf_token %}
+                {% if data %}
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" value="{{ data.name }}">
+                </div>
+                <div class="form-group">
+                    <label for="name">Username</label>
+                    <input type="text" id="username" name="username" value="{{ data.username }}">
+                </div>
+                <div class="form-group">
+                    <label for="mobile">Mobile</label>
+                    <input type="tel" id="mobile" name="mobile" value="{{ data.contact }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <textarea id="address" name="address" required>{{ data.address }}</textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="date">Date</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="days">Days</label>
+                    <input type="number" id="days" name="days" required>
+                </div>
+                <div class="text-center">
+                    
+                    <button  id="btn1" class="btn-book" type="submit">Book Now</button>
+                </div>
+                
+                {% endif %}
+            </form>
+        </div>
+    </div>
+    
+
+   
+</body>
+</html>
